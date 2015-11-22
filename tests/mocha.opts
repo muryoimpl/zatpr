@@ -1,0 +1,4 @@
+--require ./helper.js
+--reporter progress
+--ui bdd
+--colors
