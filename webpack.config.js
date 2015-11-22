@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var merge   = require('webpack-merge');
 
 var ROOT_PATH = path.resolve(__dirname);
-var TARGET = process.env.npm_lifecycle_event;
+var TARGET    = process.env.npm_lifecycle_event;
 
 var common = {
   entry: path.resolve(ROOT_PATH, 'main.jsx'),
@@ -24,11 +24,8 @@ if (TARGET === 'build') {
 
     module: {
       loaders: [
-        {
-          test: /\.jsx?$/,
-          loader: 'babel-loader',
-          exclude: /node_modules/
-        }
+        {test: /\.jsx?$/, loader: 'babel-loader',  exclude: /node_modules/},
+        {test: /\.jsx?$/, loader: 'eslint-loader', exclude: /node_modules/}
       ]
     }
   });
