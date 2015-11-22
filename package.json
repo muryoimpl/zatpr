@@ -35,6 +35,7 @@
     "jsdom": "^7.0.2",
     "mocha": "^2.3.4",
     "mocha-jsdom": "^1.0.0",
+    "node-sass": "^3.4.2",
     "power-assert": "^1.2.0",
     "webpack": "^1.12.8",
     "webpack-merge": "^0.3.0"
