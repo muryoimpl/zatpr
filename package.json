@@ -4,7 +4,10 @@
   "description": "Zatsu na Presentation tool.",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "electron": "electron .",
+    "build": "node-sass assets/css/main.sass -o assets/css && webpack --progress --color",
+    "build:sass": "node-sass assets/css/main.sass -o assets/css",
+    "watch": "esw --watch"
   },
   "repository": {
     "type": "git",
