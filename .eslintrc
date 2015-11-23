@@ -162,7 +162,7 @@
       {
         "vars": "all",
         "args": "after-used",
-        "varsIgnorePattern": "(React)"
+        "varsIgnorePattern": "(React|jsdomReact|assert|espowerBabelLoader)"
       }
     ],
     "no-use-before-define": 2,
@@ -252,7 +252,7 @@
     "space-before-blocks": [
       2,
       {
-        "functions": "never",
+        "functions": "always",
         "keywords": "always"
       }
     ],

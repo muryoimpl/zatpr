@@ -7,7 +7,8 @@
     "electron": "electron .",
     "build": "node-sass assets/css/main.sass -o assets/css && webpack --progress --color",
     "build:sass": "node-sass assets/css/main.sass -o assets/css",
-    "watch": "esw --watch"
+    "watch": "esw --watch",
+    "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess --recursive"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "eslint-plugin-security": "^1.0.0",
     "eslint-watch": "^2.1.3",
     "espower-babel": "^4.0.0",
+    "fbjs": "^0.4.0",
     "jsdom": "^7.0.2",
     "mocha": "^2.3.4",
     "mocha-jsdom": "^1.0.0",
