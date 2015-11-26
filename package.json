@@ -31,6 +31,7 @@
     "babel-preset-stage-0": "^6.1.18",
     "babel-preset-stage-1": "^6.1.18",
     "css-mqpacker": "^4.0.0",
+    "css-property-sorter": "^1.0.2",
     "electron-prebuilt": "^0.35.1",
     "eslint": "^1.10.1",
     "eslint-loader": "^1.1.1",
