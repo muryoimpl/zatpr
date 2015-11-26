@@ -1,2 +1,3 @@
-webpack.config.js
-main.js
+./webpack.config.js
+./main.js
+./gulpfile.js
