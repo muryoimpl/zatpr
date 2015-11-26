@@ -1,0 +1,38 @@
+@charset 'UTF-8'
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+#content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+header {
+  color: white;
+  width: 100%;
+  background-color: black;
+  height: 50px;
+  .nav {
+    height: 100%;
+  }
+}
+
+footer {
+  color: gray;
+  position: absolute;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  vertical-align: bottom;
+}
