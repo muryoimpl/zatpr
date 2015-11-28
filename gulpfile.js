@@ -15,37 +15,33 @@ const paths = {
   css: './assets/css/'
 };
 
-gulp.task('scss:fmt', () => {
-  const processorsFmt = [
-    autoprefixer({ browsers: ['last 2 Chrome versions'] }),
-    mqpacker,
-    rucksack,
-    propsorter({ order: 'smaccs' })
-  ];
+const processors = [
+  autoprefixer({ browsers: ['last 2 Chrome versions'] }),
+  mqpacker,
+  rucksack,
+  propsorter({ order: 'smaccs' })
+];
 
+gulp.task('scss:fmt', () => {
   return gulp.src(paths.scss).
-    pipe(postcss(processorsFmt)).
+    pipe(postcss(processors)).
     pipe(gulp.dest(paths.css));
 });
 
-gulp.task('css', () => {
-  const processors = [
-    autoprefixer({ browsers: ['last 2 Chrome versions'] }),
-    mqpacker,
-    rucksack,
-    propsorter({ order: 'smaccs' })
-  ];
 
-  return gulp.src(paths.scss). pipe(plumber()). pipe(watch(paths.scss)).
+gulp.task('css', () => {
+  return gulp.src(paths.scss).
+    pipe(plumber()).
     pipe(sourcemaps.init()).
     pipe(sass({ outputStyle: 'compressed' })).
-    on('error', (err) => {
-      console.log(err.message);
-    }).
     pipe(postcss(processors)).
     pipe(concat('main.css')).
     pipe(sourcemaps.write()).
     pipe(gulp.dest(paths.css));
 });
 
-gulp.task('default', ['css']);
+gulp.task('watch', () => {
+  watch(paths.scss, () => {
+    gulp.start('css');
+  });
+});
