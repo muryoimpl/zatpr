@@ -1,36 +1,130 @@
-@charset 'UTF-8'
+@charset "UTF-8" ;
+$navy: #2d3e50 ;
 
-html, body {
-  height: 100%;
-  width: 100%;
-  font-size: 16px;
+@mixin hover {
+  opacity: 0.7;
 }
 
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 5px 10px;
-}
-#content {
-  height: 100%;
-  margin: auto;
-  position: relative;
-  width: 100%;
+a {
+  text-decoration: none;
 }
 
-header {
-  background-color: black;
-  color: white;
-  height: 50px;
-  height: 100%;
-  width: 100%
+* {
+  box-sizing: border-box;
 }
 
-footer {
-  bottom: 5px;
-  color: gray;
-  position: absolute;
-  text-align: center;
-  vertical-align: bottom;
-  width: 100%;
+@media all {
+  #content {
+    position: relative;
+  }
+
+  .home-menu {
+    background-color: $navy;
+
+    .pure-menu-heading {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+
+      a {
+        color: white;
+      }
+    }
+
+    .pure-form {
+      margin-left: 50px;
+      display: inline-block;
+
+      .directory-name {
+        width: 500px;
+      }
+
+      .error {
+        color: red;
+      }
+    }
+
+    ul {
+      float: right;
+    }
+
+    .pure-menu-list {
+      color: white;
+      font-size: 1.5rem;
+      display: inline-block;
+      padding: .5em 1em;
+
+      a {
+        color: white;
+      }
+    }
+  }
+
+  .body {
+    margin-top: 55px;
+    z-index: 5;
+    height: 100%;
+    min-height: 560px;
+    width: 100%;
+    display: block;
+    padding: 1rem 1rem 1rem 1rem;
+    background-color: white;
+
+    ul.slides {
+      padding-top: 30px;
+      padding-left: 150px;
+      font-size: 2rem;
+      list-style: none;
+
+      li {
+        max-width: 1000px;
+        padding: 1rem;
+        border-bottom: 1px solid darkgray;
+      }
+
+      .name {
+        width: 95%;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+
+        &:hover {
+          @include hover;
+        }
+      }
+
+      .trash {
+        display: inline-table;
+        vertical-align: top;
+
+        &:hover {
+          @include hover;
+        }
+      }
+    }
+  }
+
+  .footer {
+    height: 15px;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+
+    .copyright {
+      text-align: center;
+      color: black;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: #eee;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+  }
 }
