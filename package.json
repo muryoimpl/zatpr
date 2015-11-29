@@ -52,6 +52,7 @@
     "jsdom": "^7.0.2",
     "mocha": "^2.3.4",
     "mocha-jsdom": "^1.0.0",
+    "mock-fs": "^3.5.0",
     "node-sass": "^3.4.2",
     "postcss": "^5.0.12",
     "power-assert": "^1.2.0",
