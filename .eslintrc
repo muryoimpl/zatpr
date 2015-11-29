@@ -269,7 +269,7 @@
     "space-unary-ops": 2,
     "arrow-body-style": [
       2,
-      "as-needed"
+      "always"
     ],
     "arrow-parens": [
       2,
@@ -296,6 +296,7 @@
     "no-dupe-class-members": 2,
     "no-this-before-super": 2,
     "no-var": 2,
+    "no-console": 0,
     "prefer-arrow-callback": 2,
     "prefer-const": 2,
     "prefer-reflect": 2,
