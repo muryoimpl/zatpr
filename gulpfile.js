@@ -7,8 +7,8 @@ const autoprefixer = require('autoprefixer');
 const watch        = require('gulp-watch');
 const mqpacker     = require('css-mqpacker');
 const plumber      = require('gulp-plumber');
-const propsorter   = require('css-property-sorter');
 const rucksack     = require('rucksack-css');
+const fmt          = require('cssfmt');
 
 const paths = {
   scss: './assets/css/**/*.scss',
@@ -19,7 +19,7 @@ const processors = [
   autoprefixer({ browsers: ['last 2 Chrome versions'] }),
   mqpacker,
   rucksack,
-  propsorter({ order: 'smaccs' })
+  fmt
 ];
 
 gulp.task('scss:fmt', () => {
@@ -42,6 +42,7 @@ gulp.task('css', () => {
 
 gulp.task('watch', () => {
   watch(paths.scss, () => {
+    gulp.start('scss:fmt');
     gulp.start('css');
   });
 });
