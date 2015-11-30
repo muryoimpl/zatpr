@@ -2,8 +2,8 @@ import fs from 'fs-extra';
 import path from 'path';
 
 export default class FileUtils {
-  static createBaseDir() {
-    fs.mkdirp(FileUtils.baseDir(), (err) => {
+  static createSlideDir(slidePath = '') {
+    fs.mkdirp(path.join(FileUtils.baseDir(), slidePath), (err) => {
       if (err) {
         console.error(err);
         return false;
