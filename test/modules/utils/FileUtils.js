@@ -1,44 +1,47 @@
-import assert from 'power-assert';
-import fs from 'fs-extra';
-import FileUtils, { BASEDIR } from '../../../utils/FileUtils';
-import mock from 'mock-fs';
+import assert    from 'power-assert';
+import fs        from 'fs-extra';
+import os        from 'os';
+import FileUtils from '../../../utils/FileUtils';
+import sinon     from 'sinon';
+import path      from 'path';
 
 describe('FileUtils', () => {
   describe('.createBaseDir', () => {
-    describe('when not exist BASEDIR', () => {
+    describe('when not exist $HOME/.zatpr', () => {
       beforeEach(() => {
-        mock.fs({
-          BASEDIR: fs.rmdir(BASEDIR)
-        });
+        fs.removeSync(path.join(os.tmpdir(), '.zatpr'));
+        sinon.stub(FileUtils, 'homeDir').returns(os.tmpdir());
       });
       afterEach(() => {
-        mock.restore();
+        FileUtils.homeDir.restore();
       });
 
-      it('should not exist dir', () => {
-        assert(fs.existsSync(BASEDIR) === false);
+      it('should return false before calling FileUtils.createBaseDir', () => {
+        assert(fs.existsSync(FileUtils.baseDir()) === false);
       });
 
-      it('should exist dir', (done) => {
-        FileUtils.createBaseDir();
+      it('should create $HOME/.zatpr', (done) => {
+        assert.ok(FileUtils.createBaseDir());
         done();
-        assert.ok(fs.existsSync(BASEDIR));
+        assert.ok(fs.existsSync(FileUtils.baseDir()));
       });
     });
 
-    describe('already exists', () => {
+    describe('when already exists $HOME/.zatpr', () => {
       beforeEach(() => {
-        mock.fs({ BASEDIR: {} });
+        fs.mkdirpSync(path.join(os.tmpdir(), '.zatpr'));
+        sinon.stub(FileUtils, 'homeDir').returns(os.tmpdir());
       });
       afterEach(() => {
-        mock.restore();
+        FileUtils.homeDir.restore();
       });
 
       it('should return true', () => {
         assert.ok(FileUtils.createBaseDir());
       });
-      it('should exist BASEDIR', () => {
-        assert.ok(fs.existsSync(BASEDIR));
+
+      it('should create $HOME/.zatpr', () => {
+        assert.ok(fs.existsSync(FileUtils.baseDir()));
       });
     });
   });
