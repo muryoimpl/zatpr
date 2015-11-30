@@ -57,6 +57,7 @@
     "postcss": "^5.0.12",
     "power-assert": "^1.2.0",
     "rucksack-css": "^0.8.5",
+    "sinon": "^1.17.2",
     "webpack": "^1.12.8",
     "webpack-merge": "^0.3.0"
   },
