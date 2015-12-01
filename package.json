@@ -8,7 +8,7 @@
     "build": "node-sass assets/css/main.sass -o assets/css && webpack --progress --color",
     "build:sass": "node-sass assets/css/main.sass -o assets/css",
     "watch": "esw --watch",
-    "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess --recursive"
+    "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess test/modules/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -56,10 +56,12 @@
     "postcss": "^5.0.12",
     "power-assert": "^1.2.0",
     "rucksack-css": "^0.8.5",
+    "sinon": "^1.17.2",
     "webpack": "^1.12.8",
     "webpack-merge": "^0.3.0"
   },
   "dependencies": {
+    "fs-extra": "^0.26.2",
     "history": "^1.13.1",
     "immutable": "^3.7.5",
     "isomorphic-fetch": "^2.2.0",
