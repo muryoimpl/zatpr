@@ -5,8 +5,8 @@
   "main": "main.js",
   "scripts": {
     "electron": "electron .",
-    "build": "node-sass assets/css/main.sass -o assets/css && webpack --progress --color",
-    "build:sass": "node-sass assets/css/main.sass -o assets/css",
+    "build": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css && webpack --progress --color",
+    "build:sass": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css",
     "watch": "esw --watch",
     "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess test/modules/**/*.js"
   },
