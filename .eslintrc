@@ -361,7 +361,7 @@
       }
     ],
     "react/jsx-sort-props": [
-      2,
+      0,
       {
         "callbacksLast": false,
         "ignoreCase": true
