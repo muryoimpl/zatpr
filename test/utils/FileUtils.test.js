@@ -1,7 +1,7 @@
 import assert    from 'power-assert';
 import fs        from 'fs-extra';
 import os        from 'os';
-import FileUtils from '../../../utils/FileUtils';
+import FileUtils from '../../utils/FileUtils';
 import sinon     from 'sinon';
 import path      from 'path';
 
