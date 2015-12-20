@@ -3,8 +3,11 @@ require('espower-babel')({
   cwd: process.cwd(),
 
   // glob pattern using minimatch module
-  pattern: 'tests/unit/**/*.js',
+  pattern: 'test/**/*.test.js',
 
+  babelrc: {
+    presets: ['es2015', 'stage-0', 'stage-1', 'react']
+  },
   // options for espower module
   espowerOptions: {
     patterns: [
