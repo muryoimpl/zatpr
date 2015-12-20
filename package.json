@@ -55,6 +55,7 @@
     "node-sass": "^3.4.2",
     "postcss": "^5.0.12",
     "power-assert": "^1.2.0",
+    "react-addons-test-utils": "^0.14.3",
     "rucksack-css": "^0.8.5",
     "sinon": "^1.17.2",
     "webpack": "^1.12.8",
