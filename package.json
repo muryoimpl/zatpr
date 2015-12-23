@@ -5,10 +5,10 @@
   "main": "main.js",
   "scripts": {
     "electron": "electron .",
-    "build": "node-sass assets/css/main.sass -o assets/css && webpack --progress --color",
-    "build:sass": "node-sass assets/css/main.sass -o assets/css",
+    "build": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css && webpack --progress --color",
+    "build:sass": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css",
     "watch": "esw --watch",
-    "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess test/modules/**/*.js"
+    "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess test/**/*.test.js*"
   },
   "repository": {
     "type": "git",
@@ -55,6 +55,7 @@
     "node-sass": "^3.4.2",
     "postcss": "^5.0.12",
     "power-assert": "^1.2.0",
+    "react-addons-test-utils": "^0.14.3",
     "rucksack-css": "^0.8.5",
     "sinon": "^1.17.2",
     "webpack": "^1.12.8",
