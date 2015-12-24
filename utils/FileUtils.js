@@ -13,6 +13,17 @@ export default class FileUtils {
     return true;
   }
 
+  static createBaseDir() {
+    fs.mkdirp(path.join(FileUtils.baseDir()), (err) => {
+      if (err) {
+        console.error(err);
+        return false;
+      }
+    });
+
+    return true;
+  }
+
   static homeDir() {
     return process.env.HOME || process.env.USERPROFILE;
   }

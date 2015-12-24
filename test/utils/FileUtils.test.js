@@ -6,6 +6,39 @@ import sinon     from 'sinon';
 import path      from 'path';
 
 describe('FileUtils', () => {
+  describe('.createBaseDir', () => {
+    beforeEach(() => {
+      fs.removeSync(path.join(os.tmpdir(), '.zatpr'));
+      sinon.stub(FileUtils, 'homeDir').returns(os.tmpdir());
+    });
+    afterEach(() => {
+      FileUtils.homeDir.restore();
+    });
+
+    describe('when not exist $HOME/.zatpr', () => {
+      it('should return false before calling FileUtils.createBaseDir', () => {
+        assert(fs.existsSync(FileUtils.baseDir()) === false);
+      });
+
+      it('should create $HOME/.zatpr', (done) => {
+        assert.ok(FileUtils.createBaseDir());
+        done();
+        assert.ok(fs.existsSync(FileUtils.baseDir()));
+      });
+    });
+
+    describe('when already exists $HOME/.zatpr', () => {
+      it('should return true', () => {
+        assert.ok(FileUtils.createBaseDir());
+      });
+
+      it('should create $HOME/.zatpr', () => {
+        FileUtils.createBaseDir();
+        assert.ok(fs.existsSync(FileUtils.baseDir()));
+      });
+    });
+  });
+
   describe('.createSlideDir', () => {
     describe('when not exist $HOME/.zatpr', () => {
       beforeEach(() => {
