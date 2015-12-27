@@ -6,6 +6,8 @@ var ROOT_PATH = path.resolve(__dirname);
 var TARGET    = process.env.npm_lifecycle_event;
 
 var common = {
+  target: 'atom',
+
   entry: path.resolve(ROOT_PATH, 'main.jsx'),
 
   output: {
@@ -15,7 +17,11 @@ var common = {
 
   resolve: {
     extensions: ['', '.js', '.jsx']
-  }
+  },
+
+  externals: [
+    'FileUtils'
+  ]
 };
 
 if (TARGET === 'build') {
