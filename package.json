@@ -8,6 +8,7 @@
     "build": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css && webpack --progress --color",
     "build:sass": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css",
     "watch": "esw --watch",
+    "protractor": "protractor conf.js",
     "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess test/**/*.test.js*"
   },
   "repository": {
@@ -25,6 +26,7 @@
     "babel-core": "^6.2.1",
     "babel-eslint": "^4.1.5",
     "babel-loader": "^6.2.0",
+    "babel-plugin-espower": "^2.0.0",
     "babel-polyfill": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
@@ -55,6 +57,7 @@
     "node-sass": "^3.4.2",
     "postcss": "^5.0.12",
     "power-assert": "^1.2.0",
+    "protractor": "^3.0.0",
     "react-addons-test-utils": "^0.14.3",
     "rucksack-css": "^0.8.5",
     "sinon": "^1.17.2",
