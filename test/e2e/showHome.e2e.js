@@ -4,7 +4,7 @@ const assert = require('power-assert');
 describe('show Home', () => {
   it('should show "こんにちは"', () => {
     element(by.className('title')).getText().then((title) => {
-      assert.ok(title, 'こんにちは');
+      assert.equal(title, 'こんにちは');
     });
   });
 });
