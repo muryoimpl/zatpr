@@ -8,6 +8,7 @@
     "build": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css && webpack --progress --color",
     "build:sass": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css",
     "watch": "esw --watch",
+    "protractor": "protractor conf.js",
     "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess test/**/*.test.js*"
   },
   "repository": {
