@@ -72,7 +72,6 @@ a {
 
     ul.slides {
       padding-top: 30px;
-      padding-left: 150px;
       font-size: 2rem;
       list-style: none;
 
@@ -80,6 +79,7 @@ a {
         max-width: 1000px;
         padding: 1rem;
         border-bottom: 1px solid darkgray;
+        margin: 0 auto;
       }
 
       .name {
