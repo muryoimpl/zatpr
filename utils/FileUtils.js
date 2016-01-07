@@ -1,5 +1,6 @@
 const fs   = require('fs-extra');
 const path = require('path');
+const os   = require('os');
 
 const FileUtils = {
   createBaseDir: function() {
@@ -27,6 +28,8 @@ const FileUtils = {
   },
 
   homeDir: function() {
+    if (process.env.NODE_ENV === 'test') return os.tmpdir();
+
     return process.env.HOME || process.env.USERPROFILE;
   },
 
