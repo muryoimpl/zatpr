@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux-immutablejs';
-import home from '../reducers/home';
+import homes from '../reducers/homes';
 
 const rootReducer = combineReducers({
-  home
+  homes
 });
 
 export default rootReducer;
