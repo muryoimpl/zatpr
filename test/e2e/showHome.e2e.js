@@ -1,7 +1,6 @@
 /* global $, protractor, browser */
 import assert from 'power-assert';
 import _ from 'lodash';
-import fs from 'fs-extra';
 import FileUtils from '../../utils/FileUtils';
 
 describe('show Home', () => {
