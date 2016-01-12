@@ -35,6 +35,12 @@ a {
       margin-left: 50px;
       display: inline-block;
 
+      fieldset {
+        margin: 0;
+        padding: .25em 0 .25em;
+        border: 0;
+      }
+
       .directory-name {
         width: 500px;
       }
