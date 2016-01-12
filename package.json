@@ -9,6 +9,8 @@
     "build:sass": "node_modules/.bin/node-sass assets/css/main.scss -o assets/css",
     "watch": "esw --watch",
     "protractor": "NODE_ENV=test protractor conf.js",
+    "protractor:explorer": "NODE_ENV=test protractor conf.js --elementExplorer",
+    "protractor:debug": "NODE_ENV=test protractor debug conf.js",
     "test": "mocha --opts test/mocha.opts --compilers js:espower-babel/guess test/**/*.test.js*"
   },
   "repository": {
@@ -52,6 +54,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-watch": "^4.3.5",
     "jsdom": "^7.0.2",
+    "lodash": "^3.10.1",
     "mocha": "^2.3.4",
     "mocha-jsdom": "^1.0.0",
     "node-sass": "^3.4.2",
