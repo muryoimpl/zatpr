@@ -4,10 +4,6 @@ import _ from 'lodash';
 import FileUtils from '../../utils/FileUtils';
 
 describe('show Home', () => {
-  beforeEach(() => {
-    browser.refresh();
-  });
-
   it('should show "ZATPR"', () => {
     $('.pure-menu-heading').getText().then((title) => {
       assert.equal(title, 'ZATPR');
@@ -20,41 +16,60 @@ describe('show Home', () => {
     });
   });
 
-  it('should show form and hide form', () => {
-    assert($('a#show-form-button').isPresent(), true);
-    assert($('a#hide-form-button').isPresent(), false);
+  describe('show or hide form in Home component', () => {
+    beforeEach(() => {
+      browser.refresh();
 
-    $('a#show-form-button').click();
+      assert($('a#show-form-button').isPresent(), true);
+      assert($('a#hide-form-button').isPresent(), false);
+    });
 
-    $('.directory-name').sendKeys('テストタイトル');
-    $('.directory-name').sendKeys(protractor.Key.ENTER);
+    it('should show form and hide form', () => {
+      $('a#show-form-button').click();
+      $('.directory-name').sendKeys('テストタイトル');
+      $('.directory-name').sendKeys(protractor.Key.ENTER);
 
-    assert($('a#show-form-button').isPresent(), true);
-    assert($('a#hide-form-button').isPresent(), false);
-  });
-
-  it('should show validation error(too long)', () => {
-    $('a#show-form-button').click();
-    const OVER_LIMITATION_LENGTH = 31;
-    const tooLongString = _.repeat('a', OVER_LIMITATION_LENGTH);
-
-    $('.directory-name').sendKeys(tooLongString);
-    $('.directory-name').sendKeys(protractor.Key.ENTER);
-
-    $('span.error').getText().then((text) => {
-      assert(text, 'too long(max 30 chars)');
+      assert($('a#show-form-button').isPresent(), true);
+      assert($('a#hide-form-button').isPresent(), false);
     });
   });
 
-  it('should show validation error(already exists)', () => {
-    FileUtils.createSlideDir('aaa');
+  describe('validation', () => {
+    beforeEach(() => {
+      browser.refresh();
 
-    $('a#show-form-button').click();
-    $('.directory-name').sendKeys('aaa');
-    $('.directory-name').sendKeys(protractor.Key.ENTER);
+      $('a#show-form-button').click();
+    });
 
-    $('span.error').getText().then((text) => {
-      assert(text, 'already exists');
+    context('when title is over 31 characters', () => {
+      beforeEach(() => {
+        const OVER_LIMITATION_LENGTH = 31;
+        const tooLongString = _.repeat('a', OVER_LIMITATION_LENGTH);
+
+        $('.directory-name').sendKeys(tooLongString);
+        $('.directory-name').sendKeys(protractor.Key.ENTER);
+      });
+
+      it('should show error(too long)', () => {
+        $('span.error').getText().then((text) => {
+          assert(text, 'too long(max 30 chars)');
+        });
+      });
+    });
+
+    context('when the directory already exists', () => {
+      beforeEach(() => {
+        FileUtils.createSlideDir('aaa');
+
+        $('.directory-name').sendKeys('aaa');
+        $('.directory-name').sendKeys(protractor.Key.ENTER);
+      });
+
+      it('should show error(already exists)', () => {
+        $('span.error').getText().then((text) => {
+          assert(text, 'already exists');
+        });
+      });
     });
   });
 });
