@@ -14,10 +14,10 @@ const FileUtils = {
     return true;
   },
 
-  createSlideDir: function(_slidePath) {
-    const slidePath = (_slidePath) ? _slidePath : '';
+  createSlideDir: function(dirPath) {
+    const slideDirPath = (dirPath) ? dirPath : '';
 
-    fs.mkdirp(path.join(FileUtils.baseDir(), slidePath), (err) => {
+    fs.mkdirp(path.join(FileUtils.baseDir(), slideDirPath), (err) => {
       if (err) {
         console.error(err);
         return false;
@@ -27,11 +27,11 @@ const FileUtils = {
     return true;
   },
 
-  isExistingDir: function(_path) {
-    const slidePath = (_path) ? _path : '';
+  isExistingDir: function(dirPath) {
+    const slideDirPath = (dirPath) ? dirPath : '';
 
     try {
-      return fs.statSync(path.join(FileUtils.baseDir(), slidePath)).isDirectory();
+      return fs.statSync(path.join(FileUtils.baseDir(), slideDirPath)).isDirectory();
     } catch (e) {
       return false;
     }
