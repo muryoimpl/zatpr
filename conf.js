@@ -27,8 +27,8 @@ exports.config = {
     browser.resetUrl = 'file://';
   },
   mochaOpts: {
-    ui: '',
-    reporter: 'list',
+    ui: 'bdd',
+    reporter: 'progress',
     slow: 3000,
     enableTimeouts: false
   }
