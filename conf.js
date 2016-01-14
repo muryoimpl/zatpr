@@ -16,7 +16,6 @@ exports.config = {
   ],
   capabilities: {
     browserName: 'chrome',
-    platform: 'LINUX',
     chromeOptions: {
       binary: './node_modules/electron-prebuilt/dist/electron',
       args: ['--test-type=webdriver', 'app=main.js']
@@ -27,8 +26,8 @@ exports.config = {
     browser.resetUrl = 'file://';
   },
   mochaOpts: {
-    ui: '',
-    reporter: 'list',
+    ui: 'bdd',
+    reporter: 'progress',
     slow: 3000,
     enableTimeouts: false
   }
