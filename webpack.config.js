@@ -8,7 +8,7 @@ var TARGET    = process.env.npm_lifecycle_event;
 var common = {
   target: 'atom',
 
-  entry: path.resolve(ROOT_PATH, 'main.jsx'),
+  entry: path.resolve(ROOT_PATH, 'app', 'main.jsx'),
 
   output: {
     path: path.resolve(ROOT_PATH, './'),
