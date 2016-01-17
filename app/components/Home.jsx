@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import remote from 'remote';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import SlideAddingForm from './SlideAddingForm';
 
@@ -16,6 +17,7 @@ export default class Home extends React.Component {
 
   render() {
     const { display, error } = this.props;
+    const slides = FileUtils.slideDirectories();
 
     return (
       <main>
@@ -23,22 +25,24 @@ export default class Home extends React.Component {
           <div className='pure-menu-heading'>
             <a href='#'>Zatpr</a>
           </div>
-
           <SlideAddingForm display={display} error={error} />
-
         </div>
 
         <div className='body'>
           <ul className='slides'>
-            <li>
-              <a className='name' href='#'>
-                <i className='fa fa-folder-o'></i>
-                ほげほげ
-              </a>
-              <a className='trash' href='#'>
-                <i className='fa fa-trash'></i>
-              </a>
-            </li>
+            {_.map(slides, (slide) => {
+              return (
+                <li>
+                  <a className='name' href='#'>
+                    <i className='fa fa-folder-o'></i>
+                    {slide}
+                  </a>
+                  <a className='trash' href='#'>
+                    <i className='fa fa-trash'></i>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </main>

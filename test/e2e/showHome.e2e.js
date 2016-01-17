@@ -1,6 +1,8 @@
-/* global $, protractor, browser */
+/* global $,$$,protractor,browser,element,by */
+/* eslint security/detect-object-injection: 0 */
 import assert from 'power-assert';
 import _ from 'lodash';
+import fs from 'fs';
 import FileUtils from '../../utils/FileUtils';
 
 describe('show Home', () => {
@@ -22,6 +24,10 @@ describe('show Home', () => {
 
       assert($('a#show-form-button').isPresent(), true);
       assert($('a#hide-form-button').isPresent(), false);
+    });
+
+    afterEach(() => {
+      fs.rmdirSync(FileUtils.slideDir('テストタイトル'));
     });
 
     it('should show form and hide form', () => {
@@ -65,9 +71,41 @@ describe('show Home', () => {
         $('.directory-name').sendKeys(protractor.Key.ENTER);
       });
 
+      afterEach(() => {
+        fs.rmdirSync(FileUtils.slideDir('aaa'));
+      });
+
       it('should show error(already exists)', () => {
         $('span.error').getText().then((text) => {
           assert(text, 'already exists');
+        });
+      });
+    });
+  });
+
+  describe('show directories in baseDir', () => {
+    beforeEach(() => {
+      browser.refresh();
+
+      FileUtils.createSlideDir('あああ');
+      FileUtils.createSlideDir('test');
+    });
+
+    afterEach(() => {
+      fs.rmdirSync(FileUtils.slideDir('あああ'));
+      fs.rmdirSync(FileUtils.slideDir('test'));
+    });
+
+    it('show directories in list ordered by birthtime desc', () => {
+      const labels = ['test', 'あああ'];
+
+      element.all(by.css('a.name')).then((items) => {
+        assert.equal(items.length, 2);
+      });
+
+      $$('a.name').each((elm, i) => {
+        elm.getText().then((text) => {
+          assert.equal(text, labels[i]);
         });
       });
     });
