@@ -1,6 +1,7 @@
 const fs   = require('fs-extra');
 const path = require('path');
 const os   = require('os');
+const _    = require('lodash');
 
 const FileUtils = {
   createBaseDir: () => {
@@ -38,10 +39,13 @@ const FileUtils = {
   },
 
   slideDirectories: () => {
-    const elements = fs.readdirSync(FileUtils.baseDir());
-    return elements.filter((element) => {
-      if (fs.statSync(path.join(FileUtils.baseDir(), element)).isDirectory()) return element;
+    const directories = fs.readdirSync(FileUtils.baseDir()).filter((element) => {
+      if (fs.statSync(FileUtils.slideDir(element)).isDirectory()) return element;
     });
+
+    return _.sortByOrder(directories, (dir) => {
+      return fs.statSync(FileUtils.slideDir(dir)).birthtime.toLocaleString();
+    }, 'desc');
   },
 
   homeDir: () => {
@@ -52,6 +56,10 @@ const FileUtils = {
 
   baseDir: () => {
     return path.join(FileUtils.homeDir(), '.zatpr');
+  },
+
+  slideDir: (dirname) => {
+    return path.join(FileUtils.baseDir(), dirname);
   }
 };
 
