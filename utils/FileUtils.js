@@ -37,6 +37,13 @@ const FileUtils = {
     }
   },
 
+  slideDirectories: function() {
+    const elements = fs.readdirSync(FileUtils.baseDir());
+    return elements.filter(function(element) {
+      if (fs.statSync(path.join(FileUtils.baseDir(), element)).isDirectory()) return element;
+    });
+  },
+
   homeDir: function() {
     if (process.env.NODE_ENV === 'test') return os.tmpdir();
 
