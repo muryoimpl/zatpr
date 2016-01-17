@@ -3,7 +3,7 @@ const path = require('path');
 const os   = require('os');
 
 const FileUtils = {
-  createBaseDir: function() {
+  createBaseDir: () => {
     fs.mkdirp(path.join(FileUtils.baseDir()), (err) => {
       if (err) {
         console.error(err);
@@ -14,7 +14,7 @@ const FileUtils = {
     return true;
   },
 
-  createSlideDir: function(dirPath) {
+  createSlideDir: (dirPath) => {
     const slideDirPath = (dirPath) ? dirPath : '';
 
     fs.mkdirp(path.join(FileUtils.baseDir(), slideDirPath), (err) => {
@@ -27,7 +27,7 @@ const FileUtils = {
     return true;
   },
 
-  isExistingDir: function(dirPath) {
+  isExistingDir: (dirPath) => {
     const slideDirPath = (dirPath) ? dirPath : '';
 
     try {
@@ -37,20 +37,20 @@ const FileUtils = {
     }
   },
 
-  slideDirectories: function() {
+  slideDirectories: () => {
     const elements = fs.readdirSync(FileUtils.baseDir());
-    return elements.filter(function(element) {
+    return elements.filter((element) => {
       if (fs.statSync(path.join(FileUtils.baseDir(), element)).isDirectory()) return element;
     });
   },
 
-  homeDir: function() {
+  homeDir: () => {
     if (process.env.NODE_ENV === 'test') return os.tmpdir();
 
     return process.env.HOME || process.env.USERPROFILE;
   },
 
-  baseDir: function() {
+  baseDir: () => {
     return path.join(FileUtils.homeDir(), '.zatpr');
   }
 };
