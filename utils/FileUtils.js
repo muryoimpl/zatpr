@@ -33,14 +33,14 @@ const FileUtils = {
 
     try {
       return fs.statSync(path.join(FileUtils.baseDir(), slideDirPath)).isDirectory();
-    } catch (e) {
+    } catch (err) {
       return false;
     }
   },
 
   slideDirectories: () => {
-    const directories = fs.readdirSync(FileUtils.baseDir()).filter((element) => {
-      if (fs.statSync(FileUtils.slideDir(element)).isDirectory()) return element;
+    const directories = fs.readdirSync(FileUtils.baseDir()).filter((item) => {
+      if (fs.statSync(FileUtils.slideDir(item)).isDirectory()) return item;
     });
 
     return _.sortByOrder(directories, (dir) => {
