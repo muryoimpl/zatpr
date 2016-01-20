@@ -25,6 +25,7 @@ export default class SlideAddingForm extends React.Component {
       }
 
       FileUtils.createSlideDir(title);
+      this.clearTitle();
 
       return actions.addTitle();
     }
