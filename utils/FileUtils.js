@@ -28,6 +28,10 @@ const FileUtils = {
     return true;
   },
 
+  removeSlideDir: (dirname) => {
+    fs.removeSync(path.resolve(FileUtils.slideDir(dirname)));
+  },
+
   isExistingDir: (dirPath) => {
     const slideDirPath = (dirPath) ? dirPath : '';
 
