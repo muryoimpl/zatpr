@@ -15,3 +15,7 @@ export function showTitleError(message) {
 export function addTitle() {
   return { type: Types.ADD_TITLE };
 }
+
+export function removeSlide() {
+  return { type: Types.REMOVE_SLIDE };
+}

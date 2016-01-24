@@ -1,9 +1,12 @@
 import Immutable from 'immutable';
 import * as Types from '../constants/actionTypes';
 
+import FileUtils from '../../utils/FileUtils';
+
 const initialState = Immutable.fromJS({
   display: false,
-  error: ''
+  error: '',
+  dirs: FileUtils.slideDirectories()
 });
 
 export default function homes(state = initialState, action) {
@@ -26,7 +29,12 @@ export default function homes(state = initialState, action) {
   case Types.ADD_TITLE:
     return state.merge({
       display: false,
-      error: ''
+      error: '',
+      dirs: FileUtils.slideDirectories()
+    });
+  case Types.REMOVE_SLIDE:
+    return state.merge({
+      dirs: FileUtils.slideDirectories()
     });
   default:
     return state;
