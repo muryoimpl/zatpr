@@ -25,15 +25,20 @@ export default class Home extends React.Component {
 
     const message = `Are you sure you want to delete "${dirName}"`;
 
-    dialog.showMessageBox(
-      { type: 'warning', message: message, buttons: ['OK', 'NG'] },
-      (response) => {
-        if (response === 0) {
-          FileUtils.removeSlideDir(dirName);
-          return actions.removeSlide(dirName);
+    if (process.env.NODE_ENV === 'test') {
+      FileUtils.removeSlideDir(dirName);
+      return actions.removeSlide(dirName);
+    } else {
+      dialog.showMessageBox(
+        { type: 'warning', message: message, buttons: ['OK', 'NG'] },
+        (response) => {
+          if (response === 0) {
+            FileUtils.removeSlideDir(dirName);
+            return actions.removeSlide(dirName);
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   render() {

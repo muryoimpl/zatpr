@@ -1,9 +1,11 @@
-/* global $,$$,protractor,browser,element,by */
+/* global $,$$,protractor,browser,element,by*/
 /* eslint security/detect-object-injection: 0 */
 import assert from 'power-assert';
 import _ from 'lodash';
 import fs from 'fs';
 import FileUtils from '../../utils/FileUtils';
+
+const WAIT_TIME = 100;
 
 describe('show Home', () => {
   it('should show "ZATPR"', () => {
@@ -85,10 +87,10 @@ describe('show Home', () => {
 
   describe('show directories in baseDir', () => {
     beforeEach(() => {
-      browser.refresh();
-
       FileUtils.createSlideDir('あああ');
       FileUtils.createSlideDir('test');
+
+      browser.refresh();
     });
 
     afterEach(() => {
@@ -107,6 +109,42 @@ describe('show Home', () => {
         elm.getText().then((text) => {
           assert.equal(text, labels[i]);
         });
+      });
+    });
+  });
+
+  describe('delete dirctory in list', () => {
+    beforeEach(() => {
+      FileUtils.createSlideDir('preserved');
+      FileUtils.createSlideDir('will_be_removed');
+      browser.refresh();
+    });
+
+    afterEach(() => {
+      if (FileUtils.isExistingDir('will_be_removed')) {
+        fs.rmdirSync(FileUtils.slideDir('will_be_removed'));
+      }
+      if (FileUtils.isExistingDir('preserved')) {
+        fs.rmdirSync(FileUtils.slideDir('preserved'));
+      }
+    });
+
+    it('should remove directory whose trash icon is clicked', () => {
+      $$('a.name').map((elm) => {
+        return elm.getText();
+      }).then((labels) => {
+        assert.deepEqual(labels, ['preserved', 'will_be_removed']);
+      });
+
+      element(
+        by.xpath('//*[@id="content"]/div/main/div[2]/ul/li[2]/a[@class="trash"]')
+      ).click();
+      browser.sleep(WAIT_TIME);
+
+      $$('a.name').map((elm) => {
+        return elm.getText();
+      }).then((labels) => {
+        assert.deepEqual(labels, ['preserved']);
       });
     });
   });
