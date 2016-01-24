@@ -9,6 +9,7 @@ import * as Actions from '../actions/actions';
 import SlideAddingForm from './SlideAddingForm';
 import SlideListItem from './SlideListItem';
 
+const dialog = remote.require('dialog');
 const FileUtils = remote.require('./utils/FileUtils');
 
 export default class Home extends React.Component {
@@ -24,11 +25,15 @@ export default class Home extends React.Component {
 
     const message = `Are you sure you want to delete "${dirName}"`;
 
-    // TODO dialog をつかうようにする
-    if (window.confirm(message)) {
-      FileUtils.removeSlideDir(dirName);
-      return actions.removeSlide(dirName);
-    }
+    dialog.showMessageBox(
+      { type: 'warning', message: message, buttons: ['OK', 'NG'] },
+      (response) => {
+        if (response === 0) {
+          FileUtils.removeSlideDir(dirName);
+          return actions.removeSlide(dirName);
+        }
+      }
+    );
   }
 
   render() {
