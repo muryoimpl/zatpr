@@ -1,4 +1,3 @@
-/* global $,$$,protractor,browser,element,by*/
 /* eslint security/detect-object-injection: 0 */
 import assert from 'power-assert';
 import _ from 'lodash';
