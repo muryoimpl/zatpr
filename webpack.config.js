@@ -31,6 +31,7 @@ if (TARGET === 'build') {
     module: {
       loaders: [
         {test: /\.jsx?$/, loader: 'babel-loader',  exclude: /node_modules/},
+        {test: /\.jsx?$/, loader: 'strict-loader', exclude: /node_modules/},
         {test: /\.jsx?$/, loader: 'eslint-loader', exclude: /node_modules/}
       ]
     }
