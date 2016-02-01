@@ -19,6 +19,12 @@ export default class Home extends React.Component {
     super();
   }
 
+  handleNameClick(e, dirname, actions) {
+    e.preventDefault();
+    this.props.history.pushState(null, `/${dirname}/edit`);
+    return actions.hideSlideAdding();
+  }
+
   handleTrashClick(e, dirName, actions) {
     e.preventDefault();
 
@@ -57,9 +63,11 @@ export default class Home extends React.Component {
           <ul className='slides'>
             {_.map(dirs, (dirname) => {
               return (
-                <SlideListItem key={md5(dirname)} slideName={dirname} handleTrashClick={(e) => {
-                  this.handleTrashClick(e, dirname, actions);
-                }}/>
+                <SlideListItem
+                  key={md5(dirname)}
+                  slideName={dirname}
+                  handleNameClick={(e) => this.handleNameClick(e, dirname, actions)}
+                  handleTrashClick={(e) => this.handleTrashClick(e, dirname, actions)} />
               );
             })}
           </ul>
@@ -72,7 +80,8 @@ export default class Home extends React.Component {
 Home.propTypes = {
   dirs: PropTypes.array,
   display: PropTypes.bool.isRequired,
-  error: PropTypes.string
+  error: PropTypes.string,
+  history: PropTypes.object
 };
 
 export default connect((state) => {

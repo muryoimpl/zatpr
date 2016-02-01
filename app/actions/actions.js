@@ -19,3 +19,7 @@ export function addTitle() {
 export function removeSlide() {
   return { type: Types.REMOVE_SLIDE };
 }
+
+export function hideSlideAdding() {
+  return { type: Types.HIDE_SLIDE_ADDING };
+}
