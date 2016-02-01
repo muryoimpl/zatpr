@@ -1,11 +1,13 @@
 import React from 'react';
-import { Router, IndexRoute } from 'react-router';
+import { IndexRoute, Route } from 'react-router';
 
 import App from '../containers/App';
 import Home from '../components/Home';
+import Slide from '../components/Slide';
 
 export default (
-  <Router path='/' component={App}>
+  <Route path='/' component={App}>
     <IndexRoute component={Home} />
-  </Router>
+    <Route path='/:name/edit' component={Slide} />
+  </Route>
 );
