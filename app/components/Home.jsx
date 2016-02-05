@@ -17,7 +17,6 @@ export default class Home extends React.Component {
 
   constructor() {
     super();
-    FileUtils.createBaseDir();
   }
 
   handleTrashClick(e, dirName, actions) {
