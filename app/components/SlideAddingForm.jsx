@@ -14,6 +14,10 @@ const TITLE_MAX_LENGTH = 30;
 export default class SlideAddingForm extends React.Component {
   displayName: 'SlideAddingForm'
 
+  componentDidUpdate() {
+    this.refs.addingForm.focus();
+  }
+
   handleTitleEnter(e, actions) {
     if (e.which === ENTER) {
       e.preventDefault();
@@ -59,6 +63,7 @@ export default class SlideAddingForm extends React.Component {
 
           <fieldset>
             <input
+              autoFocus={true}
               type='text'
               className='directory-name'
               placeholder='directory name'
