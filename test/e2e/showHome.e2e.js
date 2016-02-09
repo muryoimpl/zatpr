@@ -139,6 +139,9 @@ describe('show Home', () => {
         by.xpath('//*[@id="content"]/div/main/div[2]/ul/li[2]/a[@class="trash"]')
       ).click();
       browser.sleep(WAIT_TIME);
+      browser.driver.switchTo().alert().then((alert) => {
+        alert.accept();
+      });
 
       $$('a.name').map((elm) => {
         return elm.getText();

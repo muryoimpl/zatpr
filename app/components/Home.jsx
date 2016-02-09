@@ -10,6 +10,7 @@ import SlideAddingForm from './SlideAddingForm';
 import SlideListItem from './SlideListItem';
 
 const dialog = remote.require('dialog');
+const browserWindow = remote.require('browser-window');
 const FileUtils = remote.require('./utils/FileUtils');
 
 export default class Home extends React.Component {
@@ -23,21 +24,18 @@ export default class Home extends React.Component {
     e.preventDefault();
 
     const message = `Are you sure you want to delete "${dirName}"`;
+    const win = browserWindow.getFocusedWindow();
 
-    if (process.env.NODE_ENV === 'test') {
-      FileUtils.removeSlideDir(dirName);
-      return actions.removeSlide(dirName);
-    } else {
-      dialog.showMessageBox(
-        { type: 'warning', message: message, buttons: ['OK', 'NG'] },
-        (response) => {
-          if (response === 0) {
-            FileUtils.removeSlideDir(dirName);
-            return actions.removeSlide(dirName);
-          }
+    dialog.showMessageBox(
+      win,
+      { type: 'warning', message: message, buttons: ['OK', 'NG'] },
+      (response) => {
+        if (response === 0) {
+          FileUtils.removeSlideDir(dirName);
+          return actions.removeSlide(dirName);
         }
-      );
-    }
+      }
+    );
   }
 
   render() {
