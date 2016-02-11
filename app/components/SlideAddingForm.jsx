@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions/actions';
 
-import remote from 'remote';
+const remote = global.require('remote');
 const FileUtils = remote.require('./utils/FileUtils');
 
 const ENTER = 13;

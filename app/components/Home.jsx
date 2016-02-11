@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import remote from 'remote';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { bindActionCreators } from 'redux';
@@ -9,6 +8,7 @@ import * as Actions from '../actions/actions';
 import SlideAddingForm from './SlideAddingForm';
 import SlideListItem from './SlideListItem';
 
+const remote = global.require('remote');
 const dialog = remote.require('dialog');
 const FileUtils = remote.require('./utils/FileUtils');
 
