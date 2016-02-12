@@ -12,7 +12,7 @@ const ENTER = 13;
 const TITLE_MAX_LENGTH = 30;
 
 export default class SlideAddingForm extends React.Component {
-  displayName: 'SlideAddingForm'
+  displayName: 'SlideAddingForm';
 
   componentDidUpdate() {
     this.refs.addingForm.focus();

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 export default class SlideListItem extends React.Component {
-  displayName: 'SlideListItem'
+  displayName: 'SlideListItem';
 
   constructor() {
     super();
