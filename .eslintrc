@@ -23,7 +23,7 @@
     ],
     "block-scoped-var": 2,
     "complexity": [
-      2,
+      0,
       7
     ],
     "curly": [
