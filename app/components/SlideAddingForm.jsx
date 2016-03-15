@@ -35,14 +35,6 @@ export default class SlideAddingForm extends React.Component {
     }
   }
 
-  handleClickBackButton(e, actions) {
-    e.preventDefault();
-
-    this.props.history.pushState(null, '/');
-    location.href = '#';
-    return actions.backToHome();
-  }
-
   clearTitle() {
     this.refs.addingForm.value = '';
   }
@@ -97,7 +89,7 @@ export default class SlideAddingForm extends React.Component {
               } else if (backButton) {
                 return (
                   <a href='#' id='back-to-list' onClick={(e) => {
-                    this.handleClickBackButton(e, actions);
+                    this.props.handleClickBackButton(e, actions);
                   }}>Back</a>
                 );
               } else {
@@ -122,6 +114,7 @@ SlideAddingForm.propTypes = {
   backButton: PropTypes.bool,
   display: PropTypes.bool,
   error: PropTypes.string,
+  handleClickBackButton: PropTypes.func,
   history: PropTypes.object
 };
 
