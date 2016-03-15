@@ -4,6 +4,7 @@ import * as Types from '../constants/actionTypes';
 import FileUtils from '../../utils/FileUtils';
 
 const initialState = Immutable.fromJS({
+  backButton: false,
   display: false,
   error: '',
   dirs: FileUtils.slideDirectories()
@@ -34,6 +35,18 @@ export default function homes(state = initialState, action) {
     });
   case Types.REMOVE_SLIDE:
     return state.merge({
+      dirs: FileUtils.slideDirectories()
+    });
+  case Types.HIDE_SLIDE_ADDING:
+    return state.merge({
+      backButton: true,
+      display: false,
+      error: '',
+      dirs: []
+    });
+  case Types.BACK_TO_HOME:
+    return state.merge({
+      backButton: false,
       dirs: FileUtils.slideDirectories()
     });
   default:

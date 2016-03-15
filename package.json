@@ -67,6 +67,7 @@
     "redux-devtools-log-monitor": "^1.0.1",
     "rucksack-css": "^0.8.5",
     "sinon": "^1.17.2",
+    "strict-loader": "^1.0.0",
     "webpack": "^1.12.8",
     "webpack-merge": "^0.3.0"
   },

@@ -35,6 +35,14 @@ export default class SlideAddingForm extends React.Component {
     }
   }
 
+  handleClickBackButton(e, actions) {
+    e.preventDefault();
+
+    this.props.history.pushState(null, '/');
+    location.href = '#';
+    return actions.backToHome();
+  }
+
   clearTitle() {
     this.refs.addingForm.value = '';
   }
@@ -53,7 +61,7 @@ export default class SlideAddingForm extends React.Component {
   }
 
   render() {
-    const { display, error, dispatch } = this.props;
+    const { display, error, backButton, dispatch } = this.props;
     const actions = bindActionCreators(Actions, dispatch);
 
     return (
@@ -76,7 +84,7 @@ export default class SlideAddingForm extends React.Component {
         <ul className='pure-menu-list'>
           <li>
             {( () => {
-              if (display)
+              if (display) {
                 return (
                   <a href='#' id='hide-form-button' onClick={(e) => {
                     e.preventDefault();
@@ -86,7 +94,13 @@ export default class SlideAddingForm extends React.Component {
                     <i className='fa fa-times'></i>
                   </a>
                 );
-              else
+              } else if (backButton) {
+                return (
+                  <a href='#' id='back-to-list' onClick={(e) => {
+                    this.handleClickBackButton(e, actions);
+                  }}>Back</a>
+                );
+              } else {
                 return (
                   <a href='#' id='show-form-button' onClick={(e) => {
                     e.preventDefault();
@@ -95,6 +109,7 @@ export default class SlideAddingForm extends React.Component {
                     <i className='fa fa-plus'></i>
                   </a>
                 );
+              }
             })()}
           </li>
         </ul>
@@ -104,12 +119,15 @@ export default class SlideAddingForm extends React.Component {
 }
 
 SlideAddingForm.propTypes = {
+  backButton: PropTypes.bool,
   display: PropTypes.bool,
-  error: PropTypes.string
+  error: PropTypes.string,
+  history: PropTypes.object
 };
 
 export default connect((state) => {
   return {
+    backButton: state.toJS().homes.backButton,
     display: state.toJS().homes.display,
     error: state.toJS().homes.error
   };

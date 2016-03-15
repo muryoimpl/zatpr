@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 
 import routes from './config/routes';
 import configureStore from './stores/configureStore';
@@ -14,9 +14,7 @@ const store = configureStore(initialState);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      {routes}
-    </Router>
+    <Router history={browserHistory} routes={routes} />
   </Provider>,
   document.getElementById('content')
 );
