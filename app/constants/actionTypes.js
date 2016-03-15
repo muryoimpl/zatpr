@@ -4,3 +4,4 @@ export const SHOW_TITLE_ERROR = 'SHOW_TITLE_ERROR';
 export const ADD_TITLE = 'ADD_TITLE';
 export const REMOVE_SLIDE = 'REMOVE_SLIDE';
 export const HIDE_SLIDE_ADDING = 'HIDE_SLIDE_ADDING';
+export const BACK_TO_HOME = 'BACK_TO_HOME';

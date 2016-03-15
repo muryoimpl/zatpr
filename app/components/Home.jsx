@@ -54,9 +54,9 @@ export default class Home extends React.Component {
       <main>
         <div className='home-menu pure-menu pure-menu-horizontal pure-menu-fixed'>
           <div className='pure-menu-heading'>
-            <a href='#'>Zatpr</a>
+            <span>Zatpr</span>
           </div>
-          <SlideAddingForm display={display} error={error} />
+          <SlideAddingForm display={display} error={error} history={history}/>
         </div>
 
         <div className='body'>
@@ -64,6 +64,7 @@ export default class Home extends React.Component {
             {_.map(dirs, (dirname) => {
               return (
                 <SlideListItem
+                  history={history}
                   key={md5(dirname)}
                   slideName={dirname}
                   handleNameClick={(e) => this.handleNameClick(e, dirname, actions)}

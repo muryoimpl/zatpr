@@ -41,7 +41,13 @@ export default function homes(state = initialState, action) {
     return state.merge({
       backButton: true,
       display: false,
-      error: ''
+      error: '',
+      dirs: []
+    });
+  case Types.BACK_TO_HOME:
+    return state.merge({
+      backButton: false,
+      dirs: FileUtils.slideDirectories()
     });
   default:
     return state;
