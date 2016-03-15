@@ -21,7 +21,6 @@ export default class Header extends React.Component {
   }
 }
 
-
 Header.propTypes = {
   history: PropTypes.object
 };
