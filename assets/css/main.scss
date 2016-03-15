@@ -125,6 +125,23 @@ a {
     }
   }
 
+  .editor-pane {
+    width: 50%;
+    height: 85vh;
+
+    form {
+      height: 100%;
+      margin: 0 10px 0 0;
+      border-right: 3px solid #e2e2e2;
+
+      textarea {
+        resize: none;
+        width: 95%;
+        height: 100%;
+      }
+    }
+  }
+
   ::-webkit-scrollbar {
     width: 5px;
     background: #eee;
