@@ -6,8 +6,8 @@ import { bindActionCreators } from 'redux';
 import md5 from 'md5';
 
 import * as Actions from '../actions/actions';
-import SlideAddingForm from './SlideAddingForm';
 import SlideListItem from './SlideListItem';
+import Header from './Header';
 
 const dialog = remote.require('dialog');
 const FileUtils = remote.require('./utils/FileUtils');
@@ -47,17 +47,12 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const { dirs, display, error, dispatch } = this.props;
+    const { dirs, dispatch } = this.props;
     const actions = bindActionCreators(Actions, dispatch);
 
     return (
       <main>
-        <div className='home-menu pure-menu pure-menu-horizontal pure-menu-fixed'>
-          <div className='pure-menu-heading'>
-            <span>Zatpr</span>
-          </div>
-          <SlideAddingForm display={display} error={error} history={history}/>
-        </div>
+        <Header history={history}/>
 
         <div className='body'>
           <ul className='slides'>
@@ -80,15 +75,11 @@ export default class Home extends React.Component {
 
 Home.propTypes = {
   dirs: PropTypes.array,
-  display: PropTypes.bool.isRequired,
-  error: PropTypes.string,
   history: PropTypes.object
 };
 
 export default connect((state) => {
   return {
-    dirs: state.toJS().homes.dirs,
-    display: state.toJS().homes.display,
-    error: state.toJS().homes.error
+    dirs: state.toJS().homes.dirs
   };
 })(Home);
